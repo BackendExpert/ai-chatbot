@@ -12,22 +12,22 @@ const ChatBot = () => {
         { content, sender }
       ]);
     };
-
+  
     const handleSendMessage = async () => {
-        if (!userInput.trim()) return;
-    
-        addMessage(userInput, 'user');
-        setUserInput('');
-    
-        try {
-          const response = await axios.post('/api/chatbot.js', {
-            message: userInput
-          });
-          addMessage(response.data.reply, 'bot');
-        } catch (error) {
-          console.error('Error fetching bot response:', error);
-          addMessage('Sorry, something went wrong.', 'bot');
-        }
+      if (!userInput.trim()) return;
+  
+      addMessage(userInput, 'user');
+      setUserInput('');
+  
+      try {
+        const response = await axios.post('/api/chatbot', {
+          message: userInput
+        });
+        addMessage(response.data.reply, 'bot');
+      } catch (error) {
+        console.error('Error fetching bot response:', error);
+        addMessage('Sorry, something went wrong.', 'bot');
+      }
     };
 
     return (
