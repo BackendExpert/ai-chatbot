@@ -20,7 +20,7 @@ const ChatBot = () => {
       setUserInput('');
   
       try {
-        const response = await axios.post('/api/chatbot', {
+        const response = await axios.post('/api/chatbot.js', {
           message: userInput
         });
         addMessage(response.data.reply, 'bot');
